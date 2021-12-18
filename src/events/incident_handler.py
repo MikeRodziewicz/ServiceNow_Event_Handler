@@ -2,8 +2,7 @@
     Handler functions that tiggers lower-tier functions. 
 
 """
-
-from .observer import subscribe
+from observer import subscribe
 
 
 def handle_new_incident(**data):
@@ -13,4 +12,4 @@ def handle_new_incident(**data):
 def setup_incident_listeners():
     """ Enable listening to the events occuring in the ecosystem """
     
-    subscribe('new_incident_detected', handle_new_incident)
+    subscribe('new_incidents_received', handle_new_incident)
