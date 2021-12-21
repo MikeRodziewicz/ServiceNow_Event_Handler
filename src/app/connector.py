@@ -42,25 +42,25 @@ class BasicSnowConnection():
 
     def get_single_incident(self, inc_number: str):
         method = "GET"
-        url = f"{self.baseUrl}/api/now/table/incident?sysparm_query=number={inc_number}"
+        url = f"{self.snow_url}/api/now/table/incident?sysparm_query=number={inc_number}"
         return self._make_connection(method, url)
 
 
     def get_multiple_incident(self, sysparm_limit="1", sysparm_query=None):
         method = "GET"
-        url = f"{self.baseUrl}/api/now/table/incident?sysparm_limit={sysparm_limit}&sysparm_query={sysparm_query}"
+        url = f"{self.snow_url}/api/now/table/incident?sysparm_limit={sysparm_limit}&sysparm_query={sysparm_query}"
         return self._make_connection(method, url)
 
 
     def get_single_email(self, sys_id:str):
         method = "GET"
-        url = f"{self.baseUrl}/api/now/v1/email/{sys_id}"
+        url = f"{self.snow_url}/api/now/v1/email/{sys_id}"
         return self._make_connection(method, url)    
 
 
     def get_multiple_emails(self, sysparm_limit="1", sysparm_query=None):
         method = "GET"
-        url = f"{self.baseUrl}/api/now/table/sys_email?sysparm_limit={sysparm_limit}&sysparm_query={sysparm_query}"
+        url = f"{self.snow_url}/api/now/table/sys_email?sysparm_limit={sysparm_limit}&sysparm_query={sysparm_query}"
         return self._make_connection(method, url)
         
    

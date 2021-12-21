@@ -2,7 +2,7 @@
     Handler functions that tiggers lower-tier functions. 
 
 """
-from observer import subscribe
+from events.observer import subscribe
 
 
 def handle_new_incident(**data):
