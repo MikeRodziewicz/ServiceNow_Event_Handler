@@ -3,7 +3,8 @@ import os
 from dotenv import load_dotenv
 
 from events import setup_incident_listeners
-from app.connector import BasicSnowConnection 
+from app.connector import BasicSnowConnection
+from app.incidents import monitor_for_new_incidents
 
 load_dotenv()
 
@@ -13,6 +14,16 @@ snow_pwd =os.getenv('SNOW_PWD')
 
 snow_connection = BasicSnowConnection(snow_url, snow_user, snow_pwd)
 
-response = snow_connection.get_single_incident('INC0008111')
+setup_incident_listeners()
 
-print(response)
+
+
+def main(connection=snow_connection):
+    monitor_for_new_incidents(connection=connection)
+
+
+if __name__ == '__main__':
+    print('starting up...', flush=True)
+    while True: 
+        main()
+        time.sleep(30)
