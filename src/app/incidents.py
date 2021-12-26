@@ -8,13 +8,22 @@ from events.observer import post_event
 
 def monitor_for_new_incidents(connection=None, **kwargs):
     """ Function to GET new incidens at regular intervals """
-    frequency = kwargs['frequency']
+
     search_query = kwargs['query']
 
-    resp = connection.get_multiple_incident(search_query)
+    resp = connection.get_multiple_incident(sysparm_query=search_query)
+    result = resp['result']
 
-    if resp['result'] != []:
+
+    if len(result) != 0:
         print('New incidents detected...', flush=True)
         post_event('new_incidents_received', connection=connection, new_incidents=resp)
     else:
         print('No new incidents...')
+
+
+def do_something_with_inc(**kwargs):
+    print(kwargs['new_incidents']['result'])
+    print('getting to here')
+    for item in kwargs['new_incidents']['result']:
+        print(item)

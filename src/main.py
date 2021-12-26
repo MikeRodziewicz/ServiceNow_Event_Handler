@@ -19,7 +19,10 @@ setup_incident_listeners()
 
 
 def main(connection=snow_connection):
-    monitor_for_new_incidents(connection=connection)
+
+    query_inc = 'state=1'
+
+    monitor_for_new_incidents(connection=connection, query=query_inc)
 
 
 if __name__ == '__main__':
