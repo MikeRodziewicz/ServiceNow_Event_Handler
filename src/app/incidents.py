@@ -3,6 +3,7 @@
 
 """
 from events.observer import post_event
+from app.models import NewIncident
 
 
 
@@ -27,3 +28,12 @@ def do_something_with_inc(**kwargs):
     print('getting to here')
     for item in kwargs['new_incidents']['result']:
         print(item)
+
+def incident_to_model(**kwargs):
+    
+    incident_list = kwargs['new_incidents']['result']
+
+    for item in incident_list:
+        incident = NewIncident(item['sys_id'], item['number'])
+        return incident
+    

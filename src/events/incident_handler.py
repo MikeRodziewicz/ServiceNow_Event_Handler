@@ -3,12 +3,12 @@
 
 """
 from events.observer import subscribe
-from app.incidents import do_something_with_inc
+from app.incidents import incident_to_model
 
 
 def handle_new_incident(**data):
 
-    do_something_with_inc(**data)
+    incident_to_model(**data)
 
 
 def setup_incident_listeners():
