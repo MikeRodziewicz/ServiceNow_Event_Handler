@@ -2,8 +2,8 @@
     Module that takes case of acions related to the Incident record in ServiceNow. 
 
 """
-from events.observer import post_event
-from app.models import NewIncident, NewIncidentDB
+from src.events.observer import post_event
+from src.app.models import NewIncident, NewIncidentDB
 from pony.orm import db_session
 
 
