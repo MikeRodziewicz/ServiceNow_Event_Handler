@@ -33,9 +33,10 @@ class BasicSnowConnection():
                                             **kwargs)
             if self.response.raise_for_status() == None:
                 response = self.response.json()
+                print('this is response one', response)
             else:
                 response = self.response.raise_for_status()
-            return response
+            return response 
         except Exception as errh:
             print(f'Error detected: {errh}')
 

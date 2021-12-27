@@ -104,6 +104,9 @@ venv.bak/
 snow_test
 .env
 
+# Database
+*.sqlite
+
 # Spyder project settings
 .spyderproject
 .spyproject

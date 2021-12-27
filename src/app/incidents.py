@@ -3,7 +3,7 @@
 
 """
 from events.observer import post_event
-from app.models import NewIncident
+from app.models import NewIncident, NewIncidentDB
 
 
 
@@ -13,6 +13,7 @@ def monitor_for_new_incidents(connection=None, **kwargs):
     search_query = kwargs['query']
 
     resp = connection.get_multiple_incident(sysparm_query=search_query)
+    print(resp)
     result = resp['result']
 
 
@@ -23,17 +24,13 @@ def monitor_for_new_incidents(connection=None, **kwargs):
         print('No new incidents...')
 
 
-def do_something_with_inc(**kwargs):
-    print(kwargs['new_incidents']['result'])
-    print('getting to here')
-    for item in kwargs['new_incidents']['result']:
-        print(item)
 
 def incident_to_model(**kwargs):
     
     incident_list = kwargs['new_incidents']['result']
 
     for item in incident_list:
-        incident = NewIncident(item['sys_id'], item['number'])
+        # incident = NewIncident(item['sys_id'], item['number'])
+        incident = NewIncidentDB(item['sys_id'], item['number'])
         return incident
     
