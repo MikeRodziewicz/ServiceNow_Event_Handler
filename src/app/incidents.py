@@ -25,9 +25,11 @@ def monitor_for_new_incidents(connection=None, **kwargs):
         print('No new incidents...')
 
 
+# TODO need to remove commiting changes to the DB to a separate func in the models.py
 @db_session
 def incident_to_model(**kwargs):
-    
+    """func to handle new received incidents and make a record of them in the DB"""
+
     incident_list = kwargs['new_incidents']['result']
 
     for item in incident_list:
