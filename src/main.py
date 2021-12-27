@@ -6,16 +6,18 @@ from events import setup_incident_listeners
 from app.connector import BasicSnowConnection
 from app.incidents import monitor_for_new_incidents
 
+
 load_dotenv()
 
-snow_url = os.getenv('SNOW_URL')
-snow_user = os.getenv('SNOW_USR')
-snow_pwd =os.getenv('SNOW_PWD')
+SNOW_URL = os.getenv('SNOW_URL')
+SNOW_USER = os.getenv('SNOW_USR')
+SNOW_PWD =os.getenv('SNOW_PWD')
 
-snow_connection = BasicSnowConnection(snow_url, snow_user, snow_pwd)
+
+
+snow_connection = BasicSnowConnection(SNOW_URL, SNOW_USER, SNOW_PWD)
 
 setup_incident_listeners()
-
 
 
 def main(connection=snow_connection):

@@ -1,4 +1,9 @@
 from dataclasses import dataclass
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+CONFIG=os.getenv('CONFIG')
 
 from pony.orm import *
 
@@ -18,6 +23,8 @@ class NewIncidentDB(db.Entity):
     sys_id = Required(str)
     number = Required(str)
 
-
-db.bind(provider='sqlite', filename='../database.sqlite', create_db=True)
-db.generate_mapping(create_tables=True)
+if CONFIG == 'PROD':
+    print("this would have been a prod config")
+elif CONFIG == 'DEV':
+    db.bind(provider='sqlite', filename='../database.sqlite', create_db=True)
+    db.generate_mapping(create_tables=True)
