@@ -1,8 +1,8 @@
-import os 
+import os
 import time 
 from dotenv import load_dotenv
 
-from events import setup_incident_listeners
+from events.incident_handler import setup_incident_listeners
 from app.connector import BasicSnowConnection
 from app.incidents import monitor_for_new_incidents
 
@@ -35,4 +35,5 @@ if __name__ == '__main__':
     print('starting up...', flush=True)
     while True: 
         main()
-        time.sleep(30)
+        time.sleep(20)
+        print('loop is working', flush=True)
