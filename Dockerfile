@@ -1,6 +1,6 @@
 FROM python:3.8-alpine
-RUN mkdir /src
-WORKDIR /src
+RUN mkdir /code
+WORKDIR /code
 
 COPY requirements.txt requirements.txt
 

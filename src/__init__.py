@@ -1,3 +1,3 @@
-from app import * 
-from events import *
-from test import *
+# from .app import *
+# from .events import *
+# from .tests import *

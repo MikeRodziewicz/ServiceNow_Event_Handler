@@ -2,7 +2,7 @@
     Module that takes case of acions related to the Email record in ServiceNow. 
 
 """
-from events.observer import post_event
+from src.events.observer import post_event
 
 
 def monitor_for_new_emails(connection=None, **kwargs):
