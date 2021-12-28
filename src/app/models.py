@@ -34,3 +34,6 @@ if CONFIG == 'PROD':
 elif CONFIG == 'DEV':
     db.bind(provider='sqlite', filename='../database.sqlite', create_db=True)
     db.generate_mapping(create_tables=True)
+elif CONFIG == 'TEST':
+    db.bind(provider='sqlite', filename=':memory:')
+    db.generate_mapping(create_tables=True)

@@ -21,8 +21,11 @@ def monitor_for_new_incidents(connection=None, **kwargs):
     if len(result) != 0:
         print('New incidents detected...', flush=True)
         post_event('new_incidents_received', connection=connection, new_incidents=resp)
+        return "New Incidents"
     else:
-        print('No new incidents...')
+        print('No new incidents...', flush=True)
+        return "No Incidents"
+
 
 
 # TODO need to remove commiting changes to the DB to a separate func in the models.py
