@@ -4,6 +4,7 @@ WORKDIR /snow_extrator
 
 COPY requirements.txt requirements.txt
 
+RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo
 RUN pip install -r requirements.txt
 COPY ./ .
 COPY ./.env .env

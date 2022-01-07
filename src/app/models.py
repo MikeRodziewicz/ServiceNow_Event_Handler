@@ -5,9 +5,11 @@ from dotenv import load_dotenv
 from pony.orm import *
 
 
-# enable looking for DB env variables in the .env file 
+# enable looking for DB env variables in the .env file
 load_dotenv()
-CONFIG=os.getenv('CONFIG')
+CONFIG = os.getenv("CONFIG")
+# DB_USER = os.getenv("MYSQL_ROOT_PASSWORD")
+DB_PASSWORD = os.getenv("MYSQL_ROOT_PASSWORD")
 
 
 @dataclass
@@ -16,7 +18,8 @@ class NewIncident:
     number: str
 
     def __repr__(self) -> str:
-        return f'this is {self.number}'
+        return f"this is {self.number}"
+
 
 # DB - Initialize DB connection and return db object.
 db = Database()
@@ -29,11 +32,19 @@ class NewIncidentDB(db.Entity):
 
 
 # Bind, create DB and tables depending on the config in use
-if CONFIG == 'PROD':
+if CONFIG == "PROD":
     print("this would have been a prod config")
-elif CONFIG == 'DEV':
-    db.bind(provider='sqlite', filename='../database.sqlite', create_db=True)
+    db.bind(
+        provider="mysql",
+        host="mysqldb",
+        user="root",
+        passwd=DB_PASSWORD,
+        db="mysql",
+    )
     db.generate_mapping(create_tables=True)
-elif CONFIG == 'TEST':
-    db.bind(provider='sqlite', filename=':memory:')
+elif CONFIG == "DEV":
+    db.bind(provider="sqlite", filename="../database.sqlite", create_db=True)
+    db.generate_mapping(create_tables=True)
+elif CONFIG == "TEST":
+    db.bind(provider="sqlite", filename=":memory:")
     db.generate_mapping(create_tables=True)

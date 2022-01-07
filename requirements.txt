@@ -1,7 +1,8 @@
-certifi==2021.10.8
-charset-normalizer==2.0.9
-idna==3.3
+cffi==1.15.0
 pony==0.7.14
+PyMySQL==1.0.2
 python-dotenv==0.19.2
 requests==2.26.0
-urllib3==1.26.7
+pycparser==2.21
+cryptography==36.0.1
+
